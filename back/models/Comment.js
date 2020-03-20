@@ -8,15 +8,15 @@ const CommentSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    title: {
+    post: {
+        type: Schema.Types.ObjectId,
+        ref: 'Post',
+        required: true
+    },
+    text: {
         type: String,
         required: true
-    },
-    date: {
-        type: Number,
-        required: true
-    },
-    image: String,
+    }
 });
 
 const Comment = mongoose.model('Comment', CommentSchema);

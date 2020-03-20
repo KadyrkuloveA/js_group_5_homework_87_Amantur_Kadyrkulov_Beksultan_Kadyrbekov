@@ -22,7 +22,7 @@ export const fetchSinglePost = (postId) => {
     return async dispatch => {
         try {
             const response = await axiosApi.get('/posts/' + postId);
-            
+            dispatch(fetchSinglePostSuccess(response.data));
         } catch (e){
             console.error(e);
         }

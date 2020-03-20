@@ -5,19 +5,24 @@ import {useDispatch, useSelector} from 'react-redux';
 import UserMenu from "./UserMenu";
 import AnonymousMenu from "./AnonymousMenu";
 import {logoutUser} from "../../../store/actions/usersActions";
+import {withRouter} from "react-router";
 
-const Toolbar = () => {
+const Toolbar = (props) => {
     const user = useSelector(state => state.users.user);
     const dispatch = useDispatch();
     return (
         <Navbar color="light" light expand="md">
-            <NavbarBrand tag={RouterNavLink} to="/">Shop</NavbarBrand>
+            <NavbarBrand tag={RouterNavLink} to="/">Forum</NavbarBrand>
             <Nav className="ml-auto" navbar>
                 <NavItem>
-                    <NavLink tag={RouterNavLink} to="/" exact>Products</NavLink>
+                    <NavLink tag={RouterNavLink} to="/" exact>Home</NavLink>
                 </NavItem>
                 {user ? (
-                    <UserMenu logout={() => dispatch(logoutUser())} user={user}/>
+                    <UserMenu
+                        logout={() => dispatch(logoutUser())}
+                        user={user}
+                        goToForm={() => props.history.push('/add-post')}
+                    />
                 ) : (
                     <AnonymousMenu/>
                 )}
@@ -26,4 +31,4 @@ const Toolbar = () => {
     );
 };
 
-export default Toolbar;
+export default withRouter(Toolbar);

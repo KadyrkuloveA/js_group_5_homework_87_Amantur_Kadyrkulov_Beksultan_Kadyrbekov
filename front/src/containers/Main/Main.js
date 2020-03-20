@@ -1,10 +1,11 @@
 import React from 'react';
+import {Container} from "reactstrap";
 
 const Main = () => {
     return (
-        <div>
-
-        </div>
+        <Container>
+            main
+        </Container>
     );
 };
 

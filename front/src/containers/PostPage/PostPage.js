@@ -15,7 +15,6 @@ const PostPage = props => {
         dispatch(fetchSinglePost(props.match.params.postId));
         dispatch(fetchComments(props.match.params.postId));
     }, [dispatch]);
-    console.log(singlePost);
     if(singlePost){
         return (
             <Container>
@@ -31,14 +30,18 @@ const PostPage = props => {
                         <AddComments
                             user={user.token}
                             post={props.match.params.postId}
+                            fetchComments={() => dispatch(fetchComments(props.match.params.postId))}
                         />
                     </>
                 ) : null}
                 <h3 className='mt-5'>Comments</h3>
                 <div className='mx-5 p-5'>
-                    {comments.map(comment => {
-
-                    })}
+                    {comments.map(comment => (
+                        <div className='mx-4' key={comment._id}>
+                            <p>{comment.text}</p>
+                            <p>{comment.user}</p>
+                        </div>
+                    ))}
                 </div>
             </Container>
         );

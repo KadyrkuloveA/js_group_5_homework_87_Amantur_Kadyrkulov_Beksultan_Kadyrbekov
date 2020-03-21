@@ -29,7 +29,7 @@ router.post('/', auth, async (req, res) => {
     const user = req.user;
     commentData.user = user._id;
     commentData.post = req.query.post;
-
+    console.log(req.body);
     const comment = new Comment(commentData);
 
     try {

@@ -6,20 +6,22 @@ import thunkMiddleware from "redux-thunk";
 import {loadFromLocalStorage, localStorageMiddleware} from "./localStorage";
 import usersReducer from "./reducers/usersReducer";
 import postsReducer from "./reducers/postsReducer";
+import commentsReducer from "./reducers/commentsReducer";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
     router: connectRouter(history),
     users: usersReducer,
-    posts: postsReducer
+    posts: postsReducer,
+    comments: commentsReducer
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const middleware = [
     thunkMiddleware,
     routerMiddleware(history),
-    localStorageMiddleware
+    localStorageMiddleware,
 ];
 
 const enhancers = composeEnhancers(applyMiddleware(...middleware));

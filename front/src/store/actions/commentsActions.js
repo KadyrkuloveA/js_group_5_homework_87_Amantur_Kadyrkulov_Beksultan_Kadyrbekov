@@ -10,6 +10,7 @@ export const fetchComments = (postId) => {
         try{
             const response = await axiosApi.get('/comments?post=' +  postId);
             console.log(response.data);
+            dispatch(fetchCommentsSuccess(response.data));
         } catch (e){
             console.error(e);
         }

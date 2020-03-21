@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchAllPosts} from "../../store/actions/postsActions";
 import ImageThumbnail from "../../components/ImageThumbnail/ImageThumbnail";
 
-const Main = () => {
+const Main = props => {
     const posts = useSelector(state => state.posts.allPosts);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -14,7 +14,7 @@ const Main = () => {
     return (
         <Container className='mt-5'>
             {posts.map(post => (
-                <Card key={post._id} className='flex-row'>
+                <Card key={post._id} className='flex-row' onClick={() => props.history.push('/post-page/' + post._id)}>
                     <ImageThumbnail image={post.image}/>
                     <Col className='py-3'>
                         <p>

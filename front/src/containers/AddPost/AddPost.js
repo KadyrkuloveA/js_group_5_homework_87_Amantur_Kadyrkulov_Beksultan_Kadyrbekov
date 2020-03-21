@@ -10,7 +10,7 @@ const initialForm = {
     description: '',
     image: '',
 };
-const AddPost = () => {
+const AddPost = props => {
     const user = useSelector(state => state.users.user);
     const [postForm, setPostForm] = useState(initialForm);
     const onInputChange = e => {
@@ -25,8 +25,8 @@ const AddPost = () => {
         Object.keys(postForm).forEach(key => {
             formData.append(key, postForm[key]);
         });
-        console.log(formData);
         await axiosApi.post('/posts', formData, {headers: {"Authorization": "Token " + user.token}});
+        props.history.push('/');
     };
     if(user){
         return (
